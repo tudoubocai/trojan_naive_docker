@@ -1,7 +1,7 @@
 {
     "run_type": "server",
     "disable_http_check": true,
-    "local_addr": "127.0.0.1",
+    "local_addr": "0.0.0.0",
     "local_port": 14589,
     "remote_addr": "127.0.0.1",
     "remote_port": 80,
