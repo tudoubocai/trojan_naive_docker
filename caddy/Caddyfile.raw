@@ -1,17 +1,22 @@
 {
   admin off
-#  log {
-#      output file /var/log/caddy/access.log
-#      level INFO
-#  }
-#  servers :443 {
-#      protocol {
-#          experimental_http3
-#      }
-#  }
+  log {
+      output file /var/log/caddy/access.log 
+      level INFO 
+  } 
+  servers :443 { 
+      protocols h1 h2
+  } 
 }
 
+:80 {
+    redir https://{host}{uri} permanent
+}
+
+#NaiveProxy
 :443, abc.com {
+  tls tudoubocai@163.com
+  encode gzip
   route {
     forward_proxy {
         basic_auth superuser passwd
@@ -21,18 +26,33 @@
     }
     file_server {
         root /usr/share/caddy
-        browse
     }
   }
 }
 
-:81 {
-  file_server {
-        root /usr/share/caddy
-        browse
+#:81 {
+#  file_server {
+#        root /usr/share/caddy
+#        browse
+#    }
+#}
+
+#Docker
+abc.com {
+    tls tudoubocai@163.com
+    encode gzip
+    reverse_proxy http://127.0.0.1:35080 {
+        header_up X-Forwarded-Proto https
+        header_up Host {host}
     }
 }
 
+# ZeroTier
 abc.com {
-reverse_proxy http://127.0.0.1:35080
+    tls tudoubocai@163.com
+    encode gzip
+    reverse_proxy http://127.0.0.1:3000 {
+        header_up X-Forwarded-Proto https
+        header_up Host {host}
+    }                                                                                        
 }
