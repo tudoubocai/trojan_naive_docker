@@ -1,7 +1,7 @@
 version: '3.6'
 services:
   caddy:
-    image: pocat/naiveproxy
+    image: pocat/naiveproxy:v2.10.2
     container_name: caddy2_naiveproxy
     restart: always
     environment:
@@ -22,6 +22,7 @@ services:
       - ./caddy/caddy_cert:/root/.local/share/caddy/certificates/acme-v02.api.letsencrypt.org-directory/
       - ./caddy/caddy_config:/root/.config/
       - ./caddy/www:/usr/share/caddy/
+      - ./caddy/log:/var/log/caddy/
       - /etc/localtime:/etc/localtime:ro
       - /etc/timezone:/etc/timezone:ro
 
@@ -47,7 +48,7 @@ services:
 #    breakwall:
 
   trojan-go:
-    image: teddysun/trojan-go:0.10.6
+    image: teddysun/trojan-go
     container_name: trojan-go
     restart: always
     volumes:
