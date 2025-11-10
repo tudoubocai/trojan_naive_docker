@@ -81,9 +81,9 @@ volumes:
       - /dev/net/tun
     network_mode: host
     volumes:
-      - /root/zerotier-aio-zh/opt/key-networks/ztncui/etc:/opt/key-networks/ztncui/etc
-      - /root/zerotier-aio-zh/var/lib/zerotier-one:/var/lib/zerotier-one
-      - /root/zerotier-aio-zh/etc/zt-mkworld:/etc/zt-mkworld
+      - /root/trojan_naive_docker/zerotier/opt/key-networks/ztncui/etc:/opt/key-networks/ztncui/etc
+      - /root/trojan_naive_docker/zerotier/var/lib/zerotier-one:/var/lib/zerotier-one
+      - /root/trojan_naive_docker/zerotier/etc/zt-mkworld:/etc/zt-mkworld
     environment:
       - TZ=Asia/Shanghai
       - AUTOGEN_PLANET=1
