@@ -15,7 +15,7 @@
 
 #NaiveProxy
 :443, abc.com {
-  tls tudoubocai@163.com
+  tls xxx@x.com
   encode gzip
   route {
     forward_proxy {
