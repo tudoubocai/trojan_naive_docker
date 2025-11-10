@@ -30,16 +30,16 @@
   }
 }
 
-#:81 {
-#  file_server {
-#        root /usr/share/caddy
-#        browse
-#    }
-#}
+:9992 {
+  file_server {
+        root /usr/share/caddy
+        browse
+    }
+}
 
 #Docker
 abc.com {
-    tls tudoubocai@163.com
+    tls xxx@x.com
     encode gzip
     reverse_proxy http://127.0.0.1:35080 {
         header_up X-Forwarded-Proto https
@@ -49,10 +49,15 @@ abc.com {
 
 # ZeroTier
 abc.com {
-    tls tudoubocai@163.com
+    tls xxx@x.com
     encode gzip
     reverse_proxy http://127.0.0.1:3000 {
         header_up X-Forwarded-Proto https
         header_up Host {host}
     }                                                                                        
 }
+
+# Trojan 
+abc.com {
+    reverse_proxy 127.0.0.1:14589
+    }
