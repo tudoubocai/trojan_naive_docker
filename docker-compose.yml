@@ -67,10 +67,9 @@ services:
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
       - portainer_data:/data
-volumes:
-  portainer_data:
 
-    zerotier-aio-zh:
+#zerotier行星服务
+  zerotier-aio-zh:
     image: niliaerith/zerotier-aio-zh
     container_name: zerotier-aio-zh
     hostname: zerotier-aio-zh
@@ -96,3 +95,6 @@ volumes:
       - ZTNCUI_PASSWD=password
       - MYADDR=my ip
     privileged: true
+
+volumes:
+  portainer_data:
