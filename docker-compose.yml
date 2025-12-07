@@ -7,17 +7,10 @@ services:
     restart: always
     environment:
       PATH: "/etc/naiveproxy/Caddyfile"
-#    networks:
-#      breakwall:
-#        aliases:
-#          - caddy
     network_mode: "host"
     dns:
       - 8.8.8.8
       - 208.67.222.222
-#    ports:
-#      - "80:81"
-#      - "443:443"
     volumes:
       - ./caddy/Caddyfile:/etc/naiveproxy/Caddyfile
       - ./caddy/caddy_cert:/root/.local/share/caddy/certificates/acme-v02.api.letsencrypt.org-directory/
@@ -26,27 +19,6 @@ services:
       - ./caddy/log:/var/log/caddy/
       - /etc/localtime:/etc/localtime:ro
       - /etc/timezone:/etc/timezone:ro
-
-#  xray:
-#    image: teddysun/xray:1.6.1
-#    container_name: breakwall_xray
-#    restart: always
-#    volumes:
-#      - ./xray/config.json:/etc/xray/config.json
-#      - ./caddy/caddy_cert:/cert
-#      - /etc/localtime:/etc/localtime:ro
-#      - /etc/timezone:/etc/timezone:ro
-#    ports:
-#      - "4443:4443"
-#    depends_on: 
-#      - caddy
-#    networks:
-#      breakwall:
-#        aliases:
-#          - xray
-
-#networks:
-#    breakwall:
 
 #trojan代理
   trojan-go:
@@ -95,6 +67,22 @@ services:
       - ZTNCUI_PASSWD=password
       - MYADDR=my ip
     privileged: true
+
+#memos
+  memos:
+    image: neosmemo/memos:stable
+    container_name: memos
+    ports:
+      - "5230:5230"
+    volumes:
+      - ./memos:/var/opt/memos
+    environment:
+      - MEMOS_MODE=prod
+      - MEMOS_ADDR=0.0.0.0
+      - MEMOS_PORT=5230
+      - MEMOS_DATA=/var/opt/memos
+    restart: unless-stopped
+
 
 volumes:
   portainer_data:
