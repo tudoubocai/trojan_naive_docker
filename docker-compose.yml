@@ -85,7 +85,7 @@ services:
       - ./zerotier/etc/zt-mkworld:/etc/zt-mkworld
     environment:
       - TZ=Asia/Shanghai
-      - AUTOGEN_PLANET=1
+      - AUTOGEN_PLANET=0
       - NODE_ENV=production
       - HTTPS_HOST=0.0.0.0
       - HTTPS_PORT=3443
