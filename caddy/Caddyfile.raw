@@ -61,3 +61,8 @@ abc.com {
 abc.com {
     reverse_proxy 127.0.0.1:14589
     }
+
+# memos
+abc.com {
+    reverse_proxy 127.0.0.1:5230
+}
